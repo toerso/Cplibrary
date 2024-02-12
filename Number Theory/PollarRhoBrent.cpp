@@ -8,9 +8,11 @@ namespace MazdaXtoerso {
     using ui128 = __uint128_t; constexpr int MAXLIMIT = 1e6+9;
 
     template<typename Tn> struct PollardRho {
+    private:
         //Declare Smallest Prime Factors Array
         int spf[MAXLIMIT];
 
+    private:
         inline Tn mult(Tn a, Tn b, Tn p) {
             return static_cast<Tn>(static_cast<ui128>(a)*b mod p);
         }
@@ -50,7 +52,7 @@ namespace MazdaXtoerso {
 
             return a;
         }
-        //have to call it at the beginnig of main function
+
         void init() {
             spf[1] = 1; int sqrtn = static_cast<int>(std::sqrt(MAXLIMIT));
 
@@ -131,7 +133,12 @@ namespace MazdaXtoerso {
 
             return g;
         }
+    public:
+        PollardRho() {//constructor
+            init();
+        }
 
+    public:
         std::vector<Tn> primeFactorize(Tn n) {
             if(n <= 1) return {};
             if(millerRabin(n)) return {n};
@@ -157,11 +164,8 @@ namespace MazdaXtoerso {
     };
 };
 
-
 int32_t main() {
     MazdaXtoerso::PollardRho<ui64> pr;
-    pr.init();
-
     ui64 n;
 
     std::cin >> n; auto primes = pr.primeFactorize(n);
