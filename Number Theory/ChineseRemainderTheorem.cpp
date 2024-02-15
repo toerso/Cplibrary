@@ -1,3 +1,9 @@
+/**
+ * author : toerso
+ * to     : mazda
+ * date   : 15.02.24
+ */
+
 #include<bits/stdc++.h>
 #define mod %
 
